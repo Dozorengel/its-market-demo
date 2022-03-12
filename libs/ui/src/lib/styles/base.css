@@ -1,0 +1,59 @@
+@layer base {
+  :root {
+    --color-white: #fff;
+    --color-black: #303030;
+    --color-black-rgb: 48, 48, 48;
+    --color-dark-black: #202020;
+    --color-grey: #61605a;
+    --color-light-grey: #f9f9f9;
+    --color-light-grey-rgb: 249, 249, 249;
+    --color-beige: #d0cfc9;
+    --color-beige-rgb: 208, 207, 201;
+    --color-light-beige: #e7e6df;
+    --color-red: #f7300f;
+    --color-light-red: #ffe7e3;
+    --color-green: #52c46b;
+    --font-header: 'Akrobat', 'Arial Narrow', sans-serif;
+    --font-text: 'Museo Sans', sans-serif;
+    --grid-content: 34.375rem;
+    --grid-content-lg: 51.875rem;
+    --grid-content-xl: 69.375rem;
+    @screen lg {
+      --grid-content: var(--grid-content-lg);
+    }
+    @screen xl {
+      --grid-content: var(--grid-content-xl);
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-brand-black;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold font-header leading-tight;
+  }
+
+  p,
+  span,
+  small {
+    @apply font-text leading-tight;
+  }
+
+  a {
+    text-decoration-skip-ink: none;
+  }
+
+  button:focus {
+    outline: none;
+  }
+}

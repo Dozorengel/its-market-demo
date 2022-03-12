@@ -1,0 +1,124 @@
+<div class="text-brand-black sm:grid justify-between hidden grid-flow-col col-start-2">
+  <!-- Tablet shop -->
+  <div
+    class="menu-tablet__catalog c-grid-container top-14 bg-brand-white absolute xl:hidden w-full py-16 duration-200"
+    [ngClass]="catalogOpened ? 'opacity-100 visible' : 'opacity-0 invisible'"
+  >
+    <nav class="grid col-start-2 gap-y-10 pl-10" aria-label="Каталог">
+      <a
+        class="flex items-center justify-between"
+        *ngFor="let category of categories"
+        [routerLink]="['/catalog/' + category.slug]"
+      >
+        <h3 class="text-lg tracking-wider uppercase">{{ category.title }}</h3>
+        <svg width="11" height="18">
+          <use xlink:href="/assets/img/sprite.svg#chevron-right"></use>
+        </svg>
+      </a>
+    </nav>
+  </div>
+  <!-- Catalog -->
+  <div class="relative flex">
+    <!-- Menu -->
+    <nav
+      aria-label="Меню"
+      class="flex items-center gap-x-6 xl:gap-x-10 duration-200"
+      [ngClass]="!showAnchors ? 'opacity-100 visible' : 'opacity-0 invisible'"
+    >
+      <a
+        class="menu__catalog-item hover:text-brand-red relative lg:flex items-center hidden h-16"
+        *ngFor="let category of categories"
+        [routerLink]="['/catalog/' + category.slug]"
+        routerLinkActive="menu__active-item"
+      >
+        <h3 class="menu__catalog-text">{{ category.title }}</h3>
+      </a>
+    </nav>
+    <!-- Anchors -->
+    <nav
+      aria-label="Навигация"
+      class="absolute lg:flex items-center hidden gap-x-6 xl:gap-x-10 duration-200"
+      [ngClass]="showAnchors ? 'opacity-100 visible' : 'opacity-0 invisible'"
+    >
+      <a
+        *ngFor="let anchor of anchors"
+        routerLink="./"
+        [fragment]="anchor.slug"
+        class="menu__catalog-item hover:text-brand-red relative flex items-center h-16"
+      >
+        <h3 class="menu__catalog-text">{{ anchor.name }}</h3>
+      </a>
+    </nav>
+    <button
+      class="flex items-center lg:hidden"
+      (click)="catalogOpened = !catalogOpened"
+      aria-label="Каталог товаров"
+    >
+      <span class="menu__catalog-btn relative" [class.menu__catalog-btn_crossed]="catalogOpened">
+      </span>
+      <h3 class="menu__catalog-text ml-2.5">Каталог товаров</h3>
+    </button>
+  </div>
+  <!-- Actions -->
+  <div class="flex items-center transform lg:translate-x-4">
+    <!-- Add to customer button -->
+    <app-cart-arrow [show]="showAnchors" class="relative hidden sm:block"></app-cart-arrow>
+    <!-- Cart -->
+    <app-cart-modal class="menu__cart-wrapper relative grid w-14 h-16"></app-cart-modal>
+  </div>
+</div>
+<!-- Mobile -->
+<nav
+  class="menu-mobile__bar bg-brand-white fixed bottom-0 z-10 grid items-center justify-items-center sm:hidden w-full h-16 shadow-sm"
+  aria-label="Меню"
+>
+  <a
+    class="grid justify-items-center col-start-2 gap-y-1"
+    routerLink="/"
+    routerLinkActive="text-brand-red"
+    #rlaHome="routerLinkActive"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <svg class="w-6 h-6">
+      <use
+        [attr.xlink:href]="
+          rlaHome.isActive ? '/assets/img/sprite.svg#home-filled' : '/assets/img/sprite.svg#home'
+        "
+      />
+    </svg>
+    <h4 class="c-heading text-xs">Главная</h4>
+  </a>
+  <button
+    class="grid justify-items-center gap-y-1"
+    [class.text-brand-red]="catalogOpened"
+    (click)="catalogOpened = !catalogOpened"
+  >
+    <svg class="w-6 h-6">
+      <use
+        [attr.xlink:href]="
+          catalogOpened ? '/assets/img/sprite.svg#catalog-filled' : '/assets/img/sprite.svg#catalog'
+        "
+      />
+    </svg>
+    <h4 class="c-heading text-xs">Каталог</h4>
+  </button>
+  <app-cart-modal></app-cart-modal>
+</nav>
+<!-- Mobile shop -->
+<div
+  class="menu-mobile__catalog bg-brand-white fixed top-0 left-0 sm:hidden w-screen auto-rows-max duration-200"
+  [ngClass]="catalogOpened ? 'opacity-100 visible' : 'opacity-0 invisible'"
+>
+  <nav class="grid gap-y-8 px-8 pt-10" aria-label="Каталог">
+    <a
+      class="flex items-center justify-between"
+      *ngFor="let category of categories; first as isFirst"
+      [routerLink]="['/catalog/' + category.slug]"
+    >
+      <h3 class="text-xl uppercase">{{ category.title }}</h3>
+      <svg width="11" height="18">
+        <use xlink:href="/assets/img/sprite.svg#chevron-right"></use>
+      </svg>
+    </a>
+  </nav>
+</div>

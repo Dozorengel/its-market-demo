@@ -1,0 +1,6 @@
+<h4 class="flex gap-6 text-sm tracking-widest uppercase">
+  <a routerLink="/">Главная</a>
+  <a *ngFor="let link of links" [routerLink]="link.slug" class="breadcrumbs__link u-dot-separator">
+    {{ link.title }}
+  </a>
+</h4>

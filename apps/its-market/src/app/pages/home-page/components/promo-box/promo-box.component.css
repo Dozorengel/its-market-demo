@@ -1,0 +1,13 @@
+:host {
+  overflow: hidden;
+  max-height: 10.5rem;
+  grid-template-rows: 10.5rem;
+  @screen sm {
+    max-height: 18.7rem;
+    grid-template-rows: 18.7rem;
+  }
+  @screen lg {
+    column-gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,42 @@
+.slider__container {
+  grid-auto-columns: 100%;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    @apply w-0 h-0;
+  }
+}
+
+.slider__wrapper {
+  grid-template-rows: 1.5rem 19rem 1rem;
+  @screen sm {
+    grid-template-rows: 5rem 34rem 5rem;
+  }
+  @screen lg {
+    grid-template-rows: 4rem 21rem 4rem;
+  }
+}
+
+.slider {
+  grid-template-rows: auto max-content auto minmax(0, 1fr);
+  @screen lg {
+    margin-right: 5.9rem;
+    margin-left: 5.9rem;
+    grid-template-columns: 1fr minmax(0, 1fr);
+    grid-template-rows: 1fr max-content 1fr;
+  }
+  @screen xl {
+    margin-right: 8.8rem;
+  }
+  &__btn-box {
+    &_prev {
+      @screen lg {
+        left: calc((100% - var(--grid-content)) / 2) !important;
+      }
+    }
+    &_next {
+      @screen lg {
+        right: calc((100% - var(--grid-content)) / 2) !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<main class="c-main gap-y-4 sm:gap-y-8 sm:pt-0 pt-4 pb-8">
+  <div class="bg-brand-light-grey c-grid-container col-start-2 py-8 sm:py-20">
+    <div class="grid items-center sm:grid-cols-2 col-start-2 gap-8">
+      <div>
+        <!-- Image -->
+        <a [routerLink]="'/product/' + product.slug" class="sm:self-center">
+          <picture>
+            <img class="m-auto" src="{{ product.cover }}" alt="#" />
+          </picture>
+        </a>
+      </div>
+      <div class="grid gap-5">
+        <p class="font-extralight text-2xl">Скачивание цифрового товара</p>
+        <h2 class="c-title">
+          <a [routerLink]="'/product/' + product.slug">{{ product.title }}</a>
+        </h2>
+        <p class="c-text">
+          {{ product.author.name }}
+        </p>
+        <div class="flex">
+          <ng-container *ngFor="let format of product.formats">
+            <a
+              class="c-btn-outline u-btn-outline-red"
+              [href]="url + 'download/' + uuid_customer + '/' + uuid_cart_item + '/' + format"
+              >{{ format }}</a
+            >
+          </ng-container>
+        </div>
+        <p class="font-extralight text-xs">
+          Товар получен в составе заказа № {{ product.order_uid }}
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

@@ -1,0 +1,105 @@
+<header
+  class="bg-brand-black text-brand-light-grey flex justify-between h-16 sm:h-24 col-start-2"
+  [ngClass]="{ 'fixed sm:static w-full px-4 sm:px-0': dropdownOpened }"
+>
+  <!-- Logo -->
+  <a routerLink="/" class="self-center" aria-label="Logo">
+    <svg class="w-28 sm:w-40 h-10 sm:h-16">
+      <use xlink:href="/assets/img/sprite.svg#its-logo"></use>
+    </svg>
+    <ng-container *ngIf="env.build === 'stage'">this is stage</ng-container>
+  </a>
+  <nav
+    class="flex items-center self-center sm:self-stretch h-6 gap-x-5 sm:mt-5"
+    aria-label="Навигация"
+  >
+    <!-- Phone -->
+    <a
+      href="tel:88005559199"
+      class="header__item-box hover:text-brand-beige flex items-center sm:visible gap-x-2 sm:opacity-100"
+      [ngClass]="dropdownOpened ? 'opacity-0 invisible' : 'opacity-100 visible'"
+    >
+      <svg class="sm:w-4 w-6 sm:h-4 h-6">
+        <use xlink:href="/assets/img/sprite.svg#phone"></use>
+      </svg>
+      <h3 class="hidden sm:block text-lg tracking-wider">8 800 555-91-99</h3>
+    </a>
+    <!-- QA -->
+    <a
+      href="https://t.me/its_aovsyannikova"
+      target="_blank"
+      class="header__item-box hover:text-brand-beige flex items-center sm:visible gap-x-2 sm:opacity-100"
+      [ngClass]="dropdownOpened ? 'opacity-0 invisible' : 'opacity-100 visible'"
+    >
+      <svg class="sm:w-4 w-6 sm:h-4 h-6">
+        <use xlink:href="/assets/img/sprite.svg#ask"></use>
+      </svg>
+      <h3 class="hidden sm:block text-sm tracking-widest uppercase">Задать вопрос</h3>
+    </a>
+    <!-- Delivery -->
+    <a routerLink="/delivery" class="hover:text-brand-beige hidden lg:block">
+      <h3 class="text-sm tracking-widest uppercase">Оплата и доставка</h3>
+    </a>
+    <!-- Contacts -->
+    <a routerLink="/about" fragment="contact-box" class="hover:text-brand-beige hidden lg:block">
+      <h3 class="text-sm tracking-widest uppercase">Контакты</h3>
+    </a>
+    <!-- Dropdown -->
+    <div class="header__dropdown-box relative lg:hidden sm:h-5 h-6">
+      <button
+        (click)="dropdownOpened = !dropdownOpened"
+        class="header__dropdown-btn focus:text-brand-red"
+        aria-label="Меню"
+      >
+        <svg
+          class="text-brand-white sm:block sm:w-4 w-6 sm:h-4 h-6 sm:text-current"
+          [ngClass]="dropdownOpened ? 'hidden' : 'block'"
+        >
+          <use xlink:href="/assets/img/sprite.svg#more"></use>
+        </svg>
+        <svg
+          class="text-brand-white sm:hidden w-6 h-6"
+          [ngClass]="dropdownOpened ? 'block' : 'hidden'"
+        >
+          <use xlink:href="/assets/img/sprite.svg#cross"></use>
+        </svg>
+      </button>
+      <div
+        class="header__dropdown u-shadow-big c-text text-brand-black bg-brand-white absolute right-0 sm:grid invisible hidden px-4 py-6 duration-200 opacity-0"
+      >
+        <p><a routerLink="/delivery">Оплата и доставка</a></p>
+        <p><a routerLink="/about" fragment="contact-box">Контакты</a></p>
+      </div>
+    </div>
+  </nav>
+  <!-- Mobile navigation -->
+  <div
+    class="header__wrapper-mobile bg-brand-black fixed left-0 grid sm:hidden w-screen auto-rows-max gap-y-8 px-8 pt-10 duration-200"
+    [ngClass]="dropdownOpened ? 'opacity-100 visible' : 'opacity-0 invisible'"
+  >
+    <nav class="text-brand-light-grey grid auto-cols-max gap-y-8" aria-label="Навигация">
+      <!-- Phone -->
+      <a href="tel:88005559199" class="flex items-center gap-x-4">
+        <svg class="w-6 h-6">
+          <use xlink:href="/assets/img/sprite.svg#phone"></use>
+        </svg>
+        <h3 class="text-xl">8 800 555-91-99</h3>
+      </a>
+      <!-- QA -->
+      <a href="https://t.me/its_aovsyannikova" target="_blank" class="flex items-center gap-x-4">
+        <svg class="w-6 h-6">
+          <use xlink:href="/assets/img/sprite.svg#ask"></use>
+        </svg>
+        <h3 class="text-xl uppercase">Задать вопрос</h3>
+      </a>
+      <!-- Delivery -->
+      <a routerLink="/delivery">
+        <h3 class="text-xl uppercase">Оплата и доставка</h3>
+      </a>
+      <!-- Contacts -->
+      <a routerLink="/about" fragment="contact-box" class="header__contacts-mobile">
+        <h3 class="text-xl uppercase">Контакты</h3>
+      </a>
+    </nav>
+  </div>
+</header>

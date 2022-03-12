@@ -1,0 +1,49 @@
+:host {
+  grid-template-rows: 2rem 1fr 2rem;
+  @screen sm {
+    grid-template-rows: 5rem 1fr 4rem;
+  }
+}
+
+.post-box {
+  grid-template-rows: auto 1fr auto;
+  @screen lg {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  &__title {
+    @screen sm {
+      width: var(--grid-content);
+    }
+  }
+  &__button-box {
+    @screen sm {
+      width: calc(var(--grid-content) / 2);
+    }
+  }
+  &__line {
+    grid-template-columns: repeat(auto-fit, minmax(9.2rem, 1fr));
+    grid-template-rows: 1fr;
+    @media screen and (max-width: 374.98px) {
+      max-height: 26rem;
+    }
+    @screen sm {
+      width: var(--grid-content);
+      max-height: 19rem;
+      grid-template-columns: repeat(auto-fit, minmax(15.4rem, 1fr));
+      grid-template-rows: 19rem;
+    }
+    & > :first-child {
+      @apply col-span-full;
+
+      @media screen and (max-width: 640px) {
+        grid-template-rows: minmax(0, 14.8rem) max-content auto;
+
+        /* min-height: 18.6rem; //alternate */
+      }
+      @screen sm {
+        grid-column: auto;
+      }
+    }
+  }
+}

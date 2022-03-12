@@ -1,0 +1,72 @@
+<!-- Mobile button -->
+<a
+  routerLink="/cart"
+  routerLinkActive="text-brand-red"
+  class="relative grid justify-items-center sm:hidden gap-y-1"
+  #rlaCart="routerLinkActive"
+>
+  <svg class="w-6 h-6">
+    <use
+      [attr.xlink:href]="
+        rlaCart.isActive ? '/assets/img/sprite.svg#cart-full' : '/assets/img/sprite.svg#cart-empty'
+      "
+    ></use>
+  </svg>
+  <span
+    class="-translate-x-1/2 -translate-y-px absolute c-heading left-1/2 top-1.5 transform"
+    [class.text-brand-white]="rlaCart.isActive"
+  >
+    {{ count }}
+  </span>
+  <h4 class="c-heading text-xs">Корзина</h4>
+</a>
+<!-- Desktop, tablet button -->
+<button
+  class="cart-modal__cart-button hover:text-brand-red relative hidden sm:block w-full"
+  aria-label="Корзина"
+>
+  <svg class="w-6 h-6 mx-auto">
+    <use
+      [attr.xlink:href]="
+        products.length ? '/assets/img/sprite.svg#cart-full' : '/assets/img/sprite.svg#cart-empty'
+      "
+    />
+  </svg>
+  <span
+    class="c-heading absolute right-0 left-0 top-0.5 bottom-0 m-auto text-brand-white h-2 transform translate-x-px -translate-y-1"
+  >
+    {{ count }}
+  </span>
+</button>
+<!-- Popup -->
+<div
+  class="cart-modal bg-brand-white top-16 u-shadow-big absolute right-0 sm:grid invisible hidden gap-y-4 p-5 pb-0 overflow-y-auto duration-200 outline-none opacity-0"
+  tabindex="1"
+>
+  <ng-container *ngFor="let product of products">
+    <app-cart-modal-item
+      (changeCountEvent)="changeCountProduct(product.product, $event)"
+      class="relative grid grid-flow-col gap-x-2.5 sm:gap-x-5"
+      [product]="product.product"
+      [factor]="product.count"
+    ></app-cart-modal-item>
+    <hr />
+  </ng-container>
+  <div class="grid gap-y-2.5 pb-5" *ngIf="products.length">
+    <a
+      *ngIf="router.url !== '/order'"
+      routerLink="/order"
+      class="c-btn u-btn-fill-red w-full text-center"
+    >
+      Оформить заказ {{ total ? 'на ' + (total | currencyRub) : '' }}
+    </a>
+    <a
+      *ngIf="router.url !== '/customer'"
+      routerLink="/cart"
+      class="c-btn u-btn-outline-red w-full text-center border rounded"
+    >
+      Посмотреть корзину
+    </a>
+  </div>
+  <p class="c-text pb-5" *ngIf="!products.length">Корзина пуста</p>
+</div>

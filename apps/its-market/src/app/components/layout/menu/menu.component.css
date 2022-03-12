@@ -1,0 +1,113 @@
+:host {
+  @apply c-grid-container sticky top-0 bg-brand-white transition-shadow z-10;
+}
+:host(.catalog-opened) {
+  @apply z-30 sm:z-10 !important;
+}
+:host(.is-sticky) {
+  @apply u-shadow-big;
+}
+
+.menu {
+  &__catalog-btn {
+    &,
+    &::before,
+    &::after {
+      @apply inline-block w-6 h-0.5 bg-brand-black;
+
+      vertical-align: -0.5rem;
+    }
+    &::before,
+    &::after {
+      @apply absolute left-0 duration-200;
+
+      content: '';
+    }
+    &::before {
+      top: -0.5rem;
+    }
+    &::after {
+      top: 0.5rem;
+    }
+    &_crossed {
+      @apply bg-transparent !important;
+      &::before {
+        @apply top-0;
+
+        transform: rotate(135deg);
+      }
+      &::after {
+        @apply top-0;
+
+        transform: rotate(-135deg);
+      }
+    }
+  }
+  &__catalog-item,
+  &__action-item {
+    &::after {
+      @apply absolute bottom-0 block w-full h-1 opacity-0 duration-200;
+
+      content: '';
+    }
+  }
+  &__active-item {
+    &::after {
+      @apply bg-brand-black opacity-100;
+    }
+  }
+  &__catalog-item {
+    &:hover::after {
+      @apply bg-brand-red opacity-100;
+    }
+  }
+  &__catalog-text {
+    @apply text-lg tracking-wider uppercase;
+  }
+  &__currency-modal {
+    top: 4rem;
+    left: -1rem;
+    width: 17.5rem;
+    grid-auto-rows: 3rem;
+    grid-template-columns: 0 1fr;
+  }
+  &__currency-wrapper:focus-within {
+    .menu__currency-modal {
+      @apply opacity-100 visible !important;
+    }
+  }
+  &__currency-item {
+    grid-auto-columns: max-content 1fr;
+  }
+  &__currency-radio:checked + label > &__currency-tick {
+    @apply opacity-100 !important;
+  }
+  &__cart-wrapper:focus-within {
+    ::ng-deep .cart-modal {
+      @apply opacity-100 visible !important;
+    }
+  }
+}
+
+.menu-tablet {
+  &__catalog {
+    box-shadow: 0 30px 20px rgba(0, 0, 0, 0.1), 0 12px 8px rgba(0, 0, 0, 0.0689982),
+      0 6px 4px rgba(0, 0, 0, 0.05), 0 3px 2px rgba(0, 0, 0, 0.04),
+      0 1px 1px rgba(0, 0, 0, 0.0310018);
+  }
+}
+
+.menu-mobile {
+  &__bar {
+    grid-template-columns: 1rem repeat(3, 1fr) 1rem;
+  }
+  &__search-box {
+    grid-auto-columns: max-content 1fr;
+  }
+  &__search::placeholder {
+    opacity: 0.5;
+  }
+  &__catalog {
+    height: calc(100vh - 4rem);
+  }
+}

@@ -1,0 +1,54 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<main class="c-main gap-y-4 sm:gap-y-8 sm:pt-0 pt-4 pb-8">
+  <its-market-spinner *ngIf="!status" class="justify-center col-start-2"></its-market-spinner>
+  <ng-container [ngSwitch]="status">
+    <ng-container *ngSwitchCase="orderStatus.STATUS_PENDING">
+      <app-service-text
+        class="c-grid-container bg-brand-light-grey col-start-2"
+        [title]="'Спасибо за заказ!'"
+      >
+        <p>Заказ № {{ orderUID }} оформляется.</p>
+        <p>
+          Как только платеж по заказу будет проведен, мы отправим Вам подтверждение с перечнем
+          заказа на указанную электронную почту.
+        </p>
+      </app-service-text>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="orderStatus.STATUS_PROCESSED">
+      <app-service-text
+        class="c-grid-container bg-brand-light-grey col-start-2"
+        [title]="'Спасибо за заказ!'"
+      >
+        <p>Заказ № {{ orderUID }} оформлен.</p>
+        <p>Мы отправили Вам подтверждение с перечнем заказа на указанную электронную почту.</p>
+      </app-service-text>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="orderStatus.STATUS_FAILED">
+      <app-service-text
+        class="c-grid-container bg-brand-light-grey col-start-2"
+        [title]="'Не удалось оформить заказ'"
+      >
+        <p>
+          При оформлении заказа № {{ orderUID }} произошла ошибка, приносим извинения за неудобства.
+        </p>
+        <p>
+          За подробностями обратитесь к
+          <a
+            class="u-text-decor-beige-50 underline"
+            href="https://t.me/its_aovsyannikova"
+            target="_blank"
+            >@its_aovsyannikova</a
+          >
+          или на email
+          <a class="u-text-decor-beige-50 underline" href="mailto:books@itsumma.ru" target="_blank"
+            >books@itsumma.ru</a
+          >.
+        </p>
+      </app-service-text>
+    </ng-container>
+  </ng-container>
+</main>
+<app-footer></app-footer>

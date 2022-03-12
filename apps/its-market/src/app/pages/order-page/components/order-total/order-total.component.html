@@ -1,0 +1,33 @@
+<section class="bg-brand-white grid gap-y-5 sm:gap-y-8 sm:p-10 px-4 py-5">
+  <!-- Изменить товары -->
+  <div class="sm:grid items-center justify-between hidden gap-y-6">
+    <h3 class="sm:text-lg tracking-wider uppercase">Товаров: {{ count }} ед.</h3>
+    <a routerLink="/cart" class="c-tag-small font-header text-sm font-bold uppercase">Изменить</a>
+    <hr class="col-span-2" />
+  </div>
+  <app-total-price
+    class="grid gap-y-5 sm:gap-y-8"
+    (buttonClick)="submit()"
+    [isDisabled]="!count || !form || form.invalid"
+    [title]="'Оплатить заказ'"
+    [role]="'button'"
+  ></app-total-price>
+
+  <!-- Укажите данные -->
+  <div class="sm:grid justify-items-center hidden row-start-2 sm:row-start-auto gap-y-5">
+    <p
+      *ngIf="count && (!form || form?.invalid)"
+      class="text-xs sm:text-sm font-light text-brand-red -mt-2.5 sm:-mt-5"
+    >
+      Укажите
+      <span class="border-brand-black border-b border-dashed">{{ validate() }}</span>
+    </p>
+    <div class="order-total__pay text-brand-black flex gap-x-2">
+      <svg><use xlink:href="/assets/img/sprite.svg#visa"></use></svg>
+      <svg><use xlink:href="/assets/img/sprite.svg#mastercard"></use></svg>
+      <svg><use xlink:href="/assets/img/sprite.svg#mir"></use></svg>
+      <svg><use xlink:href="/assets/img/sprite.svg#webmoney"></use></svg>
+      <svg><use xlink:href="/assets/img/sprite.svg#yandexmoney"></use></svg>
+    </div>
+  </div>
+</section>

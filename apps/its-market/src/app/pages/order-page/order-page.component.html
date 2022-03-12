@@ -1,0 +1,19 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<main class="c-main bg-brand-light-grey sm:bg-brand-white gap-y-4 sm:gap-y-8 py-8 sm:pt-0">
+  <div class="bg-brand-light-grey sm:c-grid-container col-start-2">
+    <div class="grid xl:grid-cols-3 col-start-2 gap-4 sm:gap-8 sm:pt-20 xl:pb-16 sm:pb-20">
+      <app-order-info
+        (formChange)="form = $event"
+        [errors]="errors"
+        class="xl:col-span-2"
+      ></app-order-info>
+      <app-order-total
+        [form]="form"
+        (formSubmit)="createOrder($event)"
+        class="bg-brand-white"
+      ></app-order-total>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

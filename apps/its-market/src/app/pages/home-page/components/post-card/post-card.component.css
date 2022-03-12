@@ -1,0 +1,7 @@
+:host {
+  min-height: 12.9rem;
+  grid-template-rows: minmax(0, 7rem) max-content auto;
+  @screen sm {
+    grid-template-rows: minmax(0, 12.1rem) max-content auto;
+  }
+}

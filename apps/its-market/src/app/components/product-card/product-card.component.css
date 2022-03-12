@@ -1,0 +1,15 @@
+:host {
+  grid-template-rows: minmax(0, 6.5rem) max-content auto max-content;
+  @screen sm {
+    grid-template-rows: minmax(0, 11.75rem) max-content auto max-content;
+    &:hover {
+      @apply shadow-lg transform-gpu scale-105 duration-75 !important;
+      .product-card__price {
+        @apply transform-gpu translate-y-full;
+      }
+      .product-card__add-item {
+        @apply top-0 cursor-pointer !important;
+      }
+    }
+  }
+}

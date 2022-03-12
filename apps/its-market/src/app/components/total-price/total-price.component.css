@@ -1,0 +1,16 @@
+:host {
+  height: max-content;
+}
+
+.total-price {
+  max-width: 22rem;
+  @screen xl {
+    &__tooltip {
+      width: 120%;
+      margin: -10%;
+    }
+  }
+  &__delivery:hover &__tooltip {
+    @apply visible !important;
+  }
+}

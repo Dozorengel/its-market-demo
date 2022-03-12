@@ -1,0 +1,22 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<main class="c-main gap-y-4 sm:gap-y-8 sm:pt-0 pt-4 pb-8">
+  <app-slider class="relative grid col-start-2"></app-slider>
+  <app-delivery-info class="c-grid-container bg-brand-light-grey sm:grid hidden col-start-2">
+  </app-delivery-info>
+  <app-product-box
+    class="c-grid-container bg-brand-light-grey col-start-2"
+    [slug]="'weekly-offers'"
+    [btnText]="'Смотреть все'"
+  ></app-product-box>
+  <app-promo-box class="c-grid-container col-start-2"></app-promo-box>
+  <app-tags-list class="c-grid-container col-start-2"></app-tags-list>
+  <app-product-box
+    class="c-grid-container bg-brand-light-grey col-start-2"
+    [slug]="'kubernetes'"
+    [btnText]="'Все книги'"
+  ></app-product-box>
+  <app-post-box class="c-grid-container col-start-2"></app-post-box>
+  <app-review-box class="c-grid-container bg-brand-light-grey col-start-2"></app-review-box>
+</main>
+<app-footer></app-footer>

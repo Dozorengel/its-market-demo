@@ -1,0 +1,13 @@
+:host {
+  @apply hidden sm:block;
+}
+
+.breadcrumbs {
+  &__link {
+    &::after {
+      @apply bg-brand-grey;
+
+      left: -0.925rem;
+    }
+  }
+}

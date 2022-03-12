@@ -1,0 +1,14 @@
+:host {
+  grid-template-rows: 3.75rem 1fr 3.75rem;
+}
+
+.delivery-info {
+  &__item {
+    @apply grid lg:grid-flow-col auto-rows-min gap-y-5 gap-x-8;
+  }
+  &__icon {
+    @apply border-brand-white box-content relative w-10 h-10 rounded-full;
+
+    border-width: 0.75rem;
+  }
+}

@@ -1,0 +1,15 @@
+:host {
+  grid-template-rows: 3rem 1fr 2rem;
+  @screen sm {
+    grid-template-rows: 3rem 1fr 5rem;
+  }
+}
+
+.detail-face {
+  &__preview {
+    background-color: rgba(var(--color-black-rgb), 0.7);
+  }
+  &__photo-box {
+    max-width: 80%;
+  }
+}

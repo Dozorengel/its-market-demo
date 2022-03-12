@@ -1,0 +1,11 @@
+<section class="tags-list grid items-center col-start-2 row-start-2 gap-y-4">
+  <h2 class="c-title">В центре внимания</h2>
+  <div class="flex flex-wrap gap-y-1 sm:gap-y-2 gap-x-1 sm:gap-x-2">
+    <a [routerLink]="'/catalog/tag/' + tag.slug" class="c-tag" *ngFor="let tag of tags">
+      #{{ tag.title }}
+    </a>
+    <button class="c-tag u-btn-outline-red" (click)="toggle()">
+      {{ isShownAll ? 'Все метки +' : 'Свернуть ﹣' }}
+    </button>
+  </div>
+</section>

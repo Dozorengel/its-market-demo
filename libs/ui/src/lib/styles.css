@@ -1,0 +1,20 @@
+@import 'tailwindcss/base';
+@import './styles/fonts.css';
+@import './styles/base.css';
+
+@import 'tailwindcss/components';
+@import './styles/components.css';
+
+@import 'tailwindcss/utilities';
+@import './styles/utilities.css';
+
+.ng-invalid:not(form).ng-touched {
+  @apply border-brand-red;
+}
+
+ngx-dadata > .autocomplete {
+  @apply h-full;
+  & > .search {
+    @apply bg-brand-white font-light h-full outline-none !important;
+  }
+}

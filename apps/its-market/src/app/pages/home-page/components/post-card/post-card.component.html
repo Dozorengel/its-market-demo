@@ -1,0 +1,16 @@
+<!-- Image -->
+<a [href]="post.urlLink" class="h-full" target="_blank">
+  <picture>
+    <img src="{{ post.wallpaperLink }}" alt="#" class="object-cover w-full h-full" />
+  </picture>
+</a>
+<!-- Date -->
+<p
+  class="font-header mt-1 sm:mt-3 text-xs sm:text-sm font-bold tracking-wider sm:tracking-widest uppercase"
+>
+  {{ post.publishedAt | date: 'd MMMM y':'ru' }}
+</p>
+<!-- Title -->
+<p class="c-text">
+  <a [href]="post.urlLink">{{ post.title }}</a>
+</p>

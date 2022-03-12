@@ -1,0 +1,22 @@
+<section
+  class="post-box grid lg:col-span-1 sm:col-span-3 col-start-2 lg:col-start-2 row-start-2 lg:gap-y-0 gap-y-5 sm:gap-y-12 lg:gap-x-8"
+>
+  <!-- Title -->
+  <h2 class="post-box__title c-title lg:w-64 col-span-2 lg:col-span-1 sm:mx-auto lg:mx-0">Блог</h2>
+  <!-- Card line -->
+  <div
+    class="post-box__line grid lg:w-auto col-span-2 lg:col-start-2 lg:row-span-2 gap-y-5 gap-x-4 sm:gap-x-8 lg:mx-0 sm:mx-auto overflow-hidden"
+  >
+    <app-post-card
+      class="grid gap-y-1 sm:gap-y-2"
+      *ngFor="let post of posts"
+      [post]="post"
+    ></app-post-card>
+  </div>
+  <!-- Show all -->
+  <div class="post-box__button-box self-center lg:w-auto lg:ml-0 sm:ml-auto">
+    <a href="https://www.itsumma.ru/knowledges/blog" class="c-btn-outline u-btn-outline-red"
+      >Все посты</a
+    >
+  </div>
+</section>

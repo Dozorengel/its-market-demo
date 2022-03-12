@@ -1,0 +1,23 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<main class="c-main bg-brand-light-grey sm:bg-brand-white gap-y-4 sm:gap-y-8 py-8 sm:pt-0">
+  <div class="bg-brand-light-grey sm:c-grid-container col-start-2">
+    <div class="grid xl:grid-cols-3 col-start-2 gap-4 sm:gap-8 sm:pt-20 xl:pb-16 sm:pb-20">
+      <div class="grid xl:col-span-2 gap-4 sm:gap-8">
+        <app-cart-list
+          class="bg-brand-white grid gap-y-5 sm:gap-y-8 sm:p-10 px-4 py-5"
+        ></app-cart-list>
+        <section class="bg-brand-white sm:flex items-center hidden p-4 sm:p-12">
+          <img src="/assets/img/icons/i-plane.svg" class="mr-8" alt="#" />
+          <p class="c-text">Доставка по России, Украине, <br />Казахстану и Беларуси от 6 дней</p>
+        </section>
+      </div>
+      <app-total-price
+        class="bg-brand-white grid gap-y-5 sm:gap-y-8 sm:p-10 px-4 py-5"
+        [title]="'Оформить заказ'"
+        [role]="'link'"
+      ></app-total-price>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

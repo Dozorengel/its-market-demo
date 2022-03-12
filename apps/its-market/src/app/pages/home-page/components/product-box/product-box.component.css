@@ -1,0 +1,92 @@
+:host {
+  grid-template-rows: 2rem 1fr 2rem;
+  @screen sm {
+    grid-template-rows: 5rem 1fr 4rem;
+  }
+}
+
+.product-box {
+  grid-template-rows: auto auto 1fr auto;
+  @screen lg {
+    grid-template-rows: auto 14rem auto;
+  }
+  &_small {
+    @screen lg {
+      grid-template-columns: 16.9rem 1fr;
+    }
+  }
+  &_big {
+    @screen lg {
+      grid-template-columns: 34.2rem 1fr;
+    }
+  }
+  &__title,
+  &__description,
+  &__timer {
+    @screen sm {
+      width: var(--grid-content);
+    }
+  }
+  &__line {
+    grid-auto-columns: 9.2rem;
+    grid-template-rows: 16rem;
+    scrollbar-width: none;
+    --product-box-line-opacity: 1;
+    @screen sm {
+      padding-left: calc((100% - var(--grid-content)) / 2);
+      grid-auto-columns: 16.4rem;
+      grid-template-rows: 25.5rem;
+      scroll-padding-left: calc((100% - var(--grid-content)) / 2);
+
+      &::after {
+        @apply sticky top-0 right-0 h-full;
+
+        width: calc((100vw - var(--grid-content)) / 2 - 2.4rem);
+        background-color: rgba(var(--color-beige-rgb), 0.3);
+        content: '';
+        opacity: var(--product-box-line-opacity);
+        transition: opacity 0.2s;
+        @screen lg {
+          width: calc((100vw - var(--grid-content)) / 2 - 3.75rem);
+        }
+        @media screen and (min-width: 1468px) {
+          width: calc((1468px - var(--grid-content)) / 2 - 4.5rem);
+        }
+      }
+    }
+    &::-webkit-scrollbar {
+      @apply w-0 h-0;
+    }
+  }
+  &__button-box,
+  &__arrows-box {
+    @screen sm {
+      width: calc(var(--grid-content) / 2);
+    }
+  }
+  &__btn-prev {
+    &:hover {
+      @apply lg:visible lg:opacity-100 !important;
+    }
+    @screen lg {
+      left: 17rem;
+    }
+    &_big {
+      @screen lg {
+        left: 34.4rem;
+      }
+    }
+  }
+  &__btn-next {
+    &:hover {
+      @apply lg:visible lg:opacity-100 !important;
+    }
+    @screen lg {
+      left: calc(var(--grid-content) - 1rem);
+    }
+  }
+  &__line:hover ~ &__arrows-box > &__btn-prev,
+  &__line:hover ~ &__arrows-box > &__btn-next {
+    @apply lg:visible lg:opacity-100 !important;
+  }
+}

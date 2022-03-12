@@ -1,0 +1,15 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<main class="c-main sm:pt-0 pt-4 pb-8">
+  <app-detail-face
+    *ngIf="product"
+    class="c-grid-container bg-brand-light-grey relative col-start-2 overflow-hidden"
+    [product]="product"
+  ></app-detail-face>
+  <app-detail-content
+    *ngIf="product"
+    class="c-grid-container relative col-start-2 overflow-hidden"
+    [product]="product"
+  ></app-detail-content>
+</main>
+<app-footer *ngIf="product"></app-footer>

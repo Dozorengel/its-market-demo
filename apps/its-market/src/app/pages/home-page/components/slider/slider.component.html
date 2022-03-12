@@ -1,0 +1,85 @@
+<div
+  #container
+  class="slider__container snap snap-x snap-mandatory grid grid-flow-col gap-x-4 sm:gap-x-8 overflow-x-auto overflow-y-hidden"
+>
+  <div
+    appAverageColor
+    class="slider__wrapper c-grid-container snap-start"
+    *ngFor="let banner of banners"
+  >
+    <section
+      class="slider grid col-start-2 row-start-2 gap-2 sm:gap-5"
+      *ngIf="banner.type === bannerTypes.PRODUCT"
+    >
+      <!-- Author -->
+      <p class="c-text lg:self-end">
+        {{ banner.product?.author?.name }}
+      </p>
+      <!-- Title -->
+      <h3 class="lg:row-start-2">
+        <a [routerLink]="'/product/' + banner.href" class="c-title">{{ banner.product?.title }}</a>
+      </h3>
+      <!-- Price -->
+      <div
+        class="flex flex-wrap items-center lg:self-start self-end lg:row-start-3 gap-y-1 sm:gap-y-2 gap-x-1 sm:gap-x-3"
+      >
+        <ng-container *ngIf="banner.product?.preOrderPrice; else currentPrice">
+          <span class="sm:text-2xl font-black">
+            {{ (banner.product?.preOrderPrice || 0) / 100 | currencyRub }}
+          </span>
+          <span class="u-strikethrough sm:text-2xl font-black">
+            {{ (banner.product?.price || 0) / 100 | currencyRub }}
+          </span>
+        </ng-container>
+        <ng-template #currentPrice>
+          <span class="sm:text-2xl font-black">{{
+            banner.product && banner.product.price > 0
+              ? (banner.product.price / 100 | currencyRub)
+              : 'Бесплатно'
+          }}</span>
+        </ng-template>
+        <span class="c-label u-btn-outline-red" *ngIf="banner.product?.isNew">Новинка</span>
+        <span class="c-label" *ngIf="banner.product?.isBestSeller">Бестселлер</span>
+        <span class="c-label u-btn-outline-red" *ngIf="banner.product?.preOrderPrice"
+          >Предзаказ</span
+        >
+      </div>
+      <!-- Image -->
+      <a
+        [routerLink]="'/product/' + banner.href"
+        class="lg:self-center self-end lg:justify-self-end justify-self-center h-full lg:row-span-3"
+      >
+        <picture>
+          <img src="{{ banner.product?.cover }}" alt="#" class="object-contain w-full h-full" />
+        </picture>
+      </a>
+    </section>
+    <!-- Banner -->
+    <a
+      *ngIf="banner.type === 'banner'"
+      href="{{ banner.href }}"
+      class="col-span-full row-span-full"
+      target="_blank"
+    >
+      <picture>
+        <img src="{{ banner.cover }}" alt="#" class="object-contain w-full h-full" />
+      </picture>
+    </a>
+  </div>
+  <!-- Prev -->
+  <div
+    class="slider__btn-box_prev bottom-4 sm:bottom-20 lg:bottom-1/2 left-4 sm:left-20 absolute lg:transform lg:translate-y-1/2"
+  >
+    <button
+      #prevBtn
+      class="c-btn-prev invisible duration-200 opacity-0"
+      aria-label="Назад"
+    ></button>
+  </div>
+  <!-- Next -->
+  <div
+    class="slider__btn-box_next bottom-4 sm:bottom-20 lg:bottom-1/2 right-4 sm:right-20 absolute grid items-center grid-flow-col gap-x-2 sm:gap-x-5 lg:transform lg:translate-y-1/2"
+  >
+    <button #nextBtn class="c-btn-next duration-200" aria-label="Вперёд"></button>
+  </div>
+</div>

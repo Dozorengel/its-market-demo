@@ -1,0 +1,120 @@
+/* Akrobat font */
+@font-face {
+  font-display: swap;
+  font-family: 'Akrobat';
+  font-weight: 100;
+  src: local('Akrobat Thin'), local('Akrobat-Thin'),
+    url('/assets/fonts/Akrobatthin.woff2') format('woff2'),
+    url('/assets/fonts/Akrobat/Akrobatthin.woff') format('woff'),
+    url('/assets/fonts/Akrobat/Akrobatthin.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Akrobat';
+  font-weight: 200;
+  src: local('Akrobat ExtraLight'), local('Akrobat-ExtraLight'),
+    url('/assets/fonts/Akrobat/Akrobatextralight.woff2') format('woff2'),
+    url('/assets/fonts/Akrobat/Akrobatextralight.woff') format('woff'),
+    url('/assets/fonts/Akrobat/Akrobatextralight.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Akrobat';
+  font-weight: 300;
+  src: local('Akrobat Light'), local('Akrobat-Light'),
+    url('/assets/fonts/Akrobat/Akrobatlight.woff2') format('woff2'),
+    url('/assets/fonts/Akrobat/Akrobatlight.woff') format('woff'),
+    url('/assets/fonts/Akrobat/Akrobatlight.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Akrobat';
+  font-weight: 400;
+  src: local('Akrobat'), local('Akrobat-Regular'),
+    url('/assets/fonts/Akrobat/Akrobat.woff2') format('woff2'),
+    url('/assets/fonts/Akrobat/Akrobat.woff') format('woff'),
+    url('/assets/fonts/Akrobat/Akrobat.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Akrobat';
+  font-weight: 600;
+  src: local('Akrobat SemiBold'), local('Akrobat-SemiBold'),
+    url('/assets/fonts/Akrobat/Akrobatsemibold.woff2') format('woff2'),
+    url('/assets/fonts/Akrobat/Akrobatsemibold.woff') format('woff'),
+    url('/assets/fonts/Akrobat/Akrobatsemibold.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Akrobat';
+  font-weight: 700;
+  src: local('Akrobat Bold'), local('Akrobat-Bold'),
+    url('/assets/fonts/Akrobat/Akrobatbold.woff2') format('woff2'),
+    url('/assets/fonts/Akrobat/Akrobatbold.woff') format('woff'),
+    url('/assets/fonts/Akrobat/Akrobatbold.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Akrobat';
+  font-weight: 800;
+  src: local('Akrobat ExtraBold'), local('Akrobat-ExtraBold'),
+    url('/assets/fonts/Akrobat/Akrobatextrabold.woff2') format('woff2'),
+    url('/assets/fonts/Akrobat/Akrobatextrabold.woff') format('woff'),
+    url('/assets/fonts/Akrobat/Akrobatextrabold.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Akrobat';
+  font-weight: 900;
+  src: local('Akrobat Black'), local('Akrobat-Black'),
+    url('/assets/fonts/Akrobat/Akrobatblack.woff2') format('woff2'),
+    url('/assets/fonts/Akrobat/Akrobatblack.woff') format('woff'),
+    url('/assets/fonts/Akrobat/Akrobatblack.ttf') format('truetype');
+}
+
+/* Museo Sans font */
+@font-face {
+  font-display: swap;
+  font-family: 'Museo Sans';
+  font-weight: 100;
+  src: local('Museo Sans 100'), local('Museo-Sans-100'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-100.woff2') format('woff2'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-100.woff') format('woff'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-100.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Museo Sans';
+  font-weight: 300;
+  src: local('Museo Sans 300'), local('Museo-Sans-300'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-300.woff2') format('woff2'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-300.woff') format('woff'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-300.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Museo Sans';
+  font-weight: 500;
+  src: local('Museo Sans 500'), local('Museo-Sans-500'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-500.woff2') format('woff2'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-500.woff') format('woff'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-500.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Museo Sans';
+  font-weight: 700;
+  src: local('Museo Sans 700'), local('Museo-Sans-700'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-700.woff2') format('woff2'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-700.woff') format('woff'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-700.ttf') format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Museo Sans';
+  font-weight: 900;
+  src: local('Museo Sans 900'), local('Museo-Sans-900'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-900.woff2') format('woff2'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-900.woff') format('woff'),
+    url('/assets/fonts/MuseoSans/MuseoSansCyrl-900.ttf') format('truetype');
+}

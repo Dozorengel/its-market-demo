@@ -1,0 +1,53 @@
+<!-- Image -->
+<a [routerLink]="'/product/' + product.slug" class="h-full">
+  <picture>
+    <img src="{{ product.cover }}" alt="#" class="object-contain w-full h-full" />
+  </picture>
+</a>
+<!-- Labels -->
+<div
+  class="gap-y-1 sm:gap-y-2 gap-x-1 sm:gap-x-3 flex sm:flex-row flex-col flex-wrap items-center justify-center mx-2"
+>
+  <p class="c-label u-btn-outline-red" *ngIf="product.isNew">Новинка</p>
+  <p class="c-label" *ngIf="product.isBestSeller">Бестселлер</p>
+  <p class="c-label u-btn-outline-red" *ngIf="product.preOrderPrice">Предзаказ</p>
+  <p class="bg-green-500 text-white c-label" *ngIf="product.isDigital">Электронная</p>
+</div>
+<!-- Title -->
+<p class="c-text mx-3 text-center self-center">
+  <a [routerLink]="'/product/' + product.slug">{{ product.title }}</a>
+</p>
+<!-- Price -->
+<div class="relative w-full overflow-hidden text-center">
+  <div class="product-card__price duration-200">
+    <ng-container *ngIf="product.preOrderPrice; else currentPrice">
+      <span class="c-text font-black">
+        {{ product.preOrderPrice / 100 | currencyRub }}
+      </span>
+      <span class="u-strikethrough c-text ml-1 font-black">
+        {{ product.price / 100 | currencyRub }}
+      </span>
+    </ng-container>
+    <ng-template #currentPrice>
+      <span class="c-text font-black">
+        {{ product.price > 0 ? (product.price / 100 | currencyRub) : 'Бесплатно' }}
+      </span>
+    </ng-template>
+  </div>
+  <ng-container *ngIf="isInCart; else addToCartRef">
+    <a
+      routerLink="/cart"
+      class="product-card__add-item top-full c-text font-text absolute left-0 w-full font-black duration-200 text-brand-grey"
+    >
+      В корзине
+    </a>
+  </ng-container>
+  <ng-template #addToCartRef>
+    <button
+      (click)="addToCart(product)"
+      class="product-card__add-item top-full c-text font-text absolute left-0 w-full font-black duration-200 text-brand-red"
+    >
+      Добавить в корзину
+    </button>
+  </ng-template>
+</div>

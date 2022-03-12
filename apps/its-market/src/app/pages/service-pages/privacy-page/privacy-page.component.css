@@ -1,0 +1,16 @@
+.privacy-page__container {
+&_desc {
+   grid-template-rows: 2rem 1fr 2rem;
+@screen sm {
+  grid-template-rows: 5rem 1fr 5rem;
+}
+}
+&_contacts {
+   grid-template-rows: 2rem 1fr 2rem;
+@screen sm {
+  grid-template-rows: 3rem 1fr 3rem;
+}
+}
+}
+
+

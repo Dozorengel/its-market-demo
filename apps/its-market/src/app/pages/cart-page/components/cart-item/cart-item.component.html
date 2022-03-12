@@ -1,0 +1,48 @@
+<!-- Close button -->
+<button class="absolute top-0 right-0" (click)="removeItem()">
+  <svg class="w-4 h-4">
+    <use xlink:href="/assets/img/sprite.svg#close"></use>
+  </svg>
+</button>
+<!-- Image -->
+<a [routerLink]="'/product/' + product.slug" class="sm:self-center">
+  <picture>
+    <img src="{{ product.cover }}" alt="#" />
+  </picture>
+</a>
+<div class="flex flex-col">
+  <!-- Labels -->
+  <div class="flex flex-wrap items-center pb-2.5 gap-y-1 sm:gap-y-2 gap-x-1 sm:gap-x-3">
+    <p class="c-label u-btn-outline-red" *ngIf="product.isNew">Новинка</p>
+    <p class="c-label" *ngIf="product.isBestSeller">Бестселлер</p>
+    <p class="c-label u-btn-outline-red" *ngIf="product.preOrderPrice">Предзаказ</p>
+    <p class="bg-green-500 text-white c-label" *ngIf="product.isDigital">Электронная</p>
+  </div>
+  <!-- Title -->
+  <p class="c-text pr-4">
+    <a [routerLink]="'/product/' + product.slug">{{ product.title }}</a>
+  </p>
+  <!-- Price box -->
+  <div
+    class="cart-item__price-box c-text grid items-center grid-flow-col auto-cols-max gap-x-2 sm:gap-x-6 lg:gap-x-8 pt-4 mt-auto"
+  >
+    <span>
+      {{ price | currencyRub }}
+    </span>
+    <span class="text-sm">✕</span>
+    <div class="border-brand-beige flex items-center w-16 sm:w-24 h-7 sm:h-10 border rounded">
+      <button class="w-full h-full" (click)="dec()">‒</button>
+      <span class="w-1/2 text-center">{{ factor }}</span>
+      <button
+        class="disabled:pointer-events-none disabled:opacity-50 w-full h-full"
+        [disabled]="!totalPrice || product.isDigital"
+        (click)="inc()"
+      >
+        +
+      </button>
+    </div>
+    <span class="font-black">
+      {{ totalPrice | currencyRub }}
+    </span>
+  </div>
+</div>

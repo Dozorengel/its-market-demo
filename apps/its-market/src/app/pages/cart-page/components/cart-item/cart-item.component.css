@@ -1,0 +1,15 @@
+:host {
+  grid-template-columns: minmax(1.9rem, 4.75rem);
+  @screen sm {
+    grid-template-columns: 6.25rem;
+  }
+}
+
+.cart-item {
+  &__price-box {
+    grid-template-columns: 3.5rem;
+    @screen sm {
+      grid-template-columns: 5rem;
+    }
+  }
+}

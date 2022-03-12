@@ -1,0 +1,27 @@
+<a [routerLink]="'/product/' + product.slug" class="promo-card__image absolute sm:h-auto h-full">
+  <picture>
+    <img src="{{ product.cover }}" alt="#" class="object-contain h-full" />
+  </picture>
+</a>
+<!-- Author -->
+<p class="c-text z-0 self-end col-start-2">{{ product.author?.name }}</p>
+<!-- Title -->
+<h2 class="z-0 col-start-2 text-xl sm:text-2xl font-bold sm:tracking-wider uppercase">
+  <a [routerLink]="'/product/' + product.slug">{{ product.title }}</a>
+</h2>
+<!-- Price -->
+<div class="z-0 col-start-2 leading-none">
+  <ng-container *ngIf="product.preOrderPrice; else currentPrice">
+    <span class="mr-1 sm:mr-3 sm:text-2xl font-black">
+      {{ product.preOrderPrice / 100 | currencyRub }}
+    </span>
+    <span class="u-strikethrough sm:text-2xl font-black">
+      {{ product.price / 100 | currencyRub }}
+    </span>
+  </ng-container>
+  <ng-template #currentPrice>
+    <span class="mr-1 sm:mr-3 sm:text-2xl font-black">
+      {{ product.price > 0 ? (product.price / 100 | currencyRub) : 'Бесплатно' }}
+    </span>
+  </ng-template>
+</div>

@@ -1,0 +1,38 @@
+:host {
+  @apply c-grid-container bg-brand-black sticky top-0 z-20;
+  @screen sm {
+    @apply relative;
+  }
+}
+
+.header {
+  &__item-box:hover > img {
+    filter: invert(20%);
+  }
+  &__dropdown {
+    @apply gap-y-7;
+
+    top: 2.2rem;
+    width: 17.5rem;
+  }
+  &__dropdown-btn:focus + &__dropdown {
+    @apply opacity-100 visible !important;
+  }
+  &__wrapper-mobile {
+    @apply top-16;
+
+    height: calc(100vh - 8rem);
+  }
+  &__contacts-mobile {
+    @apply w-max;
+  }
+  &__currency-item {
+    grid-template-columns: minmax(0, 1rem) max-content minmax(0, 1rem);
+    & + &::after {
+      @apply bg-brand-dark-black;
+
+      z-index: -10;
+      left: calc(-5vw + 33%);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.cart-arrow {
+  &__btn {
+    clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0 100%, 0 0);
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+  &__btn-outline::before {
+    @apply absolute left-full border-r border-b border-current w-6 h-6;
+
+    content: '';
+    transform: rotate(-45deg) translate(-8px, -10px) skew(-20deg, -20deg);
+  }
+}

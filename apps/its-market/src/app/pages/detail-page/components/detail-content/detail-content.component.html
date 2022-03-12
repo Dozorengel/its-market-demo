@@ -1,0 +1,169 @@
+<section class="grid col-start-2 row-start-2">
+  <!-- Navigation -->
+  <nav class="sm:flex hidden gap-x-8 py-12" aria-label="Навигация">
+    <a
+      *ngFor="let anchor of anchors; first as isFirst"
+      routerLink="./"
+      [fragment]="anchor.slug"
+      class="detail-content__menu-item u-dot-separator"
+      [ngClass]="{ 'detail-content__menu-item_active ml-4': isFirst }"
+    >
+      <h3 class="detail-content__item-text">{{ anchor.name }}</h3>
+    </a>
+  </nav>
+  <!-- Аннотация -->
+  <div
+    class="detail-content__block relative grid lg:grid-flow-col gap-8 sm:py-12 pt-8 overflow-hidden"
+  >
+    <input
+      type="checkbox"
+      id="annotation"
+      class="detail-content__checkbox -top-12 absolute invisible"
+    />
+    <h2 class="detail-content__block-title">
+      <label
+        for="annotation"
+        class="text-xl sm:text-4.5xl font-bold uppercase sm:normal-case flex items-center justify-between"
+      >
+        Аннотация
+        <span
+          class="detail-content__sign sm:hidden inline-block w-4 h-4 duration-200 bg-center bg-no-repeat"
+        ></span>
+      </label>
+    </h2>
+    <div
+      class="detail-content__block-content detail-content__grid grid sm:max-h-full lg:grid-flow-col gap-8 duration-200"
+    >
+      <div class="c-text grid lg:max-w-md gap-y-5 lg:py-2.5 leading-normal">
+        <p>
+          {{ product.annotation }}
+        </p>
+      </div>
+      <div class="grid auto-rows-max gap-4 lg:py-2.5">
+        <p class="c-heading sm:text-lg -mb-1.5 sm:mb-0">Выходные данные</p>
+        <ng-container *ngFor="let property of properties">
+          <p class="c-text">{{ property.name ? property.name + ': ' : '' }} {{ property.value }}</p>
+        </ng-container>
+      </div>
+      <hr class="sm:hidden pb-8" />
+    </div>
+  </div>
+  <!-- Об авторе -->
+  <div class="detail-content__block relative grid lg:grid-flow-col gap-8 sm:py-12 overflow-hidden">
+    <input
+      type="checkbox"
+      id="author"
+      class="detail-content__checkbox -top-12 absolute invisible"
+    />
+    <h2 class="detail-content__block-title">
+      <label
+        for="author"
+        class="text-xl sm:text-4.5xl font-bold uppercase sm:normal-case flex items-center justify-between"
+      >
+        Об авторе
+        <span
+          class="detail-content__sign sm:hidden inline-block w-4 h-4 duration-200 bg-center bg-no-repeat"
+        ></span>
+      </label>
+    </h2>
+    <div
+      class="detail-content__block-content detail-content__grid grid sm:max-h-full lg:grid-flow-col gap-8 duration-200"
+    >
+      <div class="c-text grid lg:max-w-md gap-y-5 lg:py-2.5 leading-normal">
+        <p>
+          {{ product.author.description }}
+        </p>
+      </div>
+      <div class="gap-2 lg:py-2.5 grid auto-rows-max">
+        <p class="c-heading sm:text-lg">Метки</p>
+        <div class="flex flex-wrap">
+          <a
+            [routerLink]="'/catalog/tag/' + tag.slug"
+            class="c-tag mt-1 sm:mt-2 mr-1 sm:mr-2"
+            *ngFor="let tag of product.tags"
+          >
+            #{{ tag.title }}
+          </a>
+        </div>
+      </div>
+      <hr class="sm:hidden pb-8" />
+    </div>
+  </div>
+  <!-- Доставка -->
+  <div
+    *ngIf="!product.isDigital"
+    class="detail-content__block relative grid lg:grid-flow-col gap-8 sm:py-12 overflow-hidden"
+  >
+    <input
+      type="checkbox"
+      id="delivery"
+      class="detail-content__checkbox -top-12 absolute invisible"
+    />
+    <h2 class="detail-content__block-title">
+      <label
+        for="delivery"
+        class="text-xl sm:text-4.5xl font-bold uppercase sm:normal-case flex items-center justify-between"
+      >
+        Доставка
+        <span
+          class="detail-content__sign sm:hidden inline-block w-4 h-4 duration-200 bg-center bg-no-repeat"
+        ></span>
+      </label>
+    </h2>
+    <div
+      class="detail-content__block-content grid sm:max-h-full lg:grid-flow-col sm:grid-cols-2 gap-4 sm:gap-8 duration-200"
+    >
+      <div class="bg-brand-light-grey grid gap-8 lg:gap-20 p-4 sm:p-10">
+        <p class="c-text font-bold">Курьером до двери<br />по России</p>
+        <p class="c-text mt-auto">от 6 до 10 дней, 700 ₽</p>
+      </div>
+      <div class="bg-brand-light-grey grid gap-8 lg:gap-20 p-4 sm:p-10">
+        <p class="c-text font-bold">Почтой по России, Украине, Казахстану и Беларуси</p>
+        <p class="c-text mt-auto">от 14 дней, 490 ₽</p>
+      </div>
+      <span class="sm:hidden pb-4"></span>
+    </div>
+  </div>
+  <!-- Оплата -->
+  <div class="detail-content__block relative grid lg:grid-flow-col gap-8 sm:py-12 overflow-hidden">
+    <input
+      type="checkbox"
+      id="payment"
+      class="detail-content__checkbox -top-12 absolute invisible"
+    />
+    <h2 class="detail-content__block-title">
+      <label
+        for="payment"
+        class="text-xl sm:text-4.5xl font-bold uppercase sm:normal-case flex items-center justify-between"
+      >
+        Оплата
+        <span
+          class="detail-content__sign sm:hidden inline-block w-4 h-4 duration-200 bg-center bg-no-repeat"
+        ></span>
+      </label>
+    </h2>
+    <div
+      class="detail-content__block-content grid sm:max-h-full lg:grid-flow-col sm:grid-cols-2 gap-4 sm:gap-8 duration-200"
+    >
+      <div class="bg-brand-light-grey grid gap-2.5 sm:gap-5 p-4 sm:p-10">
+        <p class="c-text font-bold">Физическим лицам</p>
+        <p class="c-text leading-normal">
+          Банковскими картами Visa, MasterCard, МИР и электронными деньгами Webmoney или
+          Яндекс.Деньги.
+        </p>
+        <p class="c-text leading-normal">При необходимости, выдадим товарный чек.</p>
+        <div class="detail-content__pay grid gap-2">
+          <svg><use xlink:href="/assets/img/sprite.svg#visa"></use></svg>
+          <svg><use xlink:href="/assets/img/sprite.svg#mastercard"></use></svg>
+          <svg><use xlink:href="/assets/img/sprite.svg#mir"></use></svg>
+          <svg><use xlink:href="/assets/img/sprite.svg#webmoney"></use></svg>
+          <svg><use xlink:href="/assets/img/sprite.svg#yandexmoney"></use></svg>
+        </div>
+      </div>
+      <div class="bg-brand-light-grey grid auto-rows-max gap-2.5 sm:gap-5 p-4 sm:p-10">
+        <p class="c-text font-bold">Юридическим лицам</p>
+        <p class="c-text leading-normal">Предусмотрена оплата по безналичному расчету.</p>
+      </div>
+    </div>
+  </div>
+</section>

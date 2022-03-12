@@ -1,0 +1,3 @@
+app-root > ng-component {
+  @apply flex flex-col min-h-screen;
+}

@@ -1,0 +1,125 @@
+<h3 class="sm:text-lg tracking-wider uppercase">Итоговая стоимость</h3>
+
+<div class="grid gap-y-5 sm:text-lg font-light">
+  <!-- Amount -->
+  <div class="flex justify-between">
+    <p>Всего</p>
+    <p>{{ sum | currencyRub }}</p>
+  </div>
+  <!-- Delivery -->
+  <div
+    class="total-price__delivery hover:text-brand-red relative flex items-center justify-between cursor-pointer"
+    *ngIf="sum"
+  >
+    <p>Доставка</p>
+    <ng-container *ngIf="showDelivery; else noDelivery">
+      <p>{{ delivery | currencyRub }}</p>
+    </ng-container>
+    <ng-template #noDelivery>
+      <svg class="w-4 h-4">
+        <use xlink:href="/assets/img/sprite.svg#info-help"></use>
+      </svg>
+      <div
+        class="total-price__tooltip u-shadow-big bg-brand-white top-16 text-brand-black absolute grid invisible gap-5 p-5"
+      >
+        <p>Доставка почтой, либо курьером по России.</p>
+        <p>Точную стоимость вы можете рассчитать при оформлении заказа.</p>
+      </div>
+    </ng-template>
+  </div>
+  <ng-container *ngIf="sum">
+    <ng-container *ngIf="promoAmount; then promo; else noPromo"></ng-container>
+    <!-- Promo code is applied -->
+    <ng-template #promo>
+      <div class="font-text flex justify-between font-light">
+        <p class="border-brand-black border-b border-dashed">Промокод</p>
+        <p>- {{ promoAmount | currencyRub }}</p>
+      </div>
+      <div class="flex gap-x-2.5 justify-between">
+        <p class="c-text pl-4">{{ promoCode }}</p>
+        <button (click)="detachPromoCode()">
+          <svg class="w-4 h-4">
+            <use xlink:href="/assets/img/sprite.svg#close"></use>
+          </svg>
+        </button>
+      </div>
+    </ng-template>
+    <!-- Promo code is not applied -->
+    <ng-template #noPromo>
+      <button
+        class="font-text flex justify-between font-light"
+        (click)="showPromoCode = !showPromoCode"
+      >
+        <p class="border-brand-black border-b border-dashed">Промокод</p>
+        <p>{{ showPromoCode ? '—' : '+' }}</p>
+      </button>
+      <!-- Promo code form -->
+      <form
+        class="flex flex-col"
+        [ngClass]="showPromoCode ? 'block' : 'hidden'"
+        [formGroup]="promocodeForm"
+        (ngSubmit)="applyPromoCode()"
+        ngNativeValidate
+      >
+        <div class="flex gap-x-2.5 -mt-2.5">
+          <input
+            type="text"
+            class="font-text border-brand-beige w-full px-4 text-lg font-light bg-transparent border rounded"
+            placeholder="Ваш промокод"
+            aria-label="Промокод"
+            name="promocode"
+            required
+            formControlName="promocode"
+          />
+          <button
+            [disabled]="promocodeForm.invalid"
+            type="submit"
+            class="c-btn-outline disabled:bg-brand-beige disabled:border-0 disabled:pointer-events-none disabled:text-brand-white u-btn-outline-red"
+          >
+            Применить
+          </button>
+        </div>
+        <p
+          *ngIf="promocodeForm.getError('promocodeInvalid')"
+          class="text-xs sm:text-sm font-light text-brand-red mt-2"
+        >
+          Промокод не действителен
+        </p>
+      </form>
+    </ng-template>
+  </ng-container>
+  <!-- Total -->
+  <div class="flex justify-between font-black">
+    <p>Итого</p>
+    <p>{{ total | currencyRub }}</p>
+  </div>
+</div>
+
+<!-- In cart -->
+<a
+  *ngIf="role === 'link' && products.length"
+  [routerLink]="'/order'"
+  class="c-btn u-btn-fill-red w-full sm:row-auto row-span-full text-center"
+>
+  {{ title }}
+</a>
+<!-- In order -->
+<button
+  *ngIf="role === 'button' && products.length"
+  class="c-btn u-btn-fill-red disabled:pointer-events-none disabled:u-btn-fill-beige flex items-center justify-center w-full sm:row-auto row-span-full gap-2"
+  [disabled]="isDisabled"
+  (click)="click()"
+>
+  <svg class="w-5 h-5" *ngIf="isDisabled">
+    <use xlink:href="/assets/img/sprite.svg#lock"></use>
+  </svg>
+  <span class="c-heading">{{ sum ? title : 'Оформить заказ' }}</span>
+</button>
+<!-- No products -->
+<a
+  *ngIf="!products.length"
+  [routerLink]="'/'"
+  class="c-btn u-btn-fill-red w-full sm:row-auto row-span-full text-center"
+>
+  Вернуться в магазин
+</a>

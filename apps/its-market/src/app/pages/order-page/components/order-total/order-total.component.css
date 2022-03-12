@@ -1,0 +1,14 @@
+:host {
+  height: max-content;
+}
+
+.order-total {
+  &__pay {
+    grid-auto-columns: 2.5rem;
+    & > svg {
+      width: 2.5rem;
+      height: 1.625rem;
+      fill: var(--color-light-beige);
+    }
+  }
+}

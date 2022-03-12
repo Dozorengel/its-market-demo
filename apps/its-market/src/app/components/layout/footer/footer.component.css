@@ -1,0 +1,96 @@
+:host {
+  @apply c-grid-container bg-brand-black mt-auto;
+
+  grid-template-rows: 2.5rem 1fr 5rem;
+  @screen sm {
+    grid-template-rows: 5rem 1fr 2rem;
+  }
+}
+
+.footer {
+  @screen lg {
+    grid-template-rows: max-content auto;
+  }
+  &__subscription-block {
+    @screen lg {
+      grid-template-rows: min-content auto;
+    }
+  }
+  &__form {
+    @screen lg {
+      grid-template-rows: min-content min-content;
+    }
+  }
+  &__email {
+    grid-template-columns: auto 7.5rem;
+    @screen sm {
+      grid-template-columns: auto 9.5rem;
+    }
+  }
+  &__email-input::placeholder {
+    opacity: 0.5;
+  }
+  &__gdpr {
+    grid-template-columns: 1.75rem auto;
+  }
+  &__gdpr-tick {
+    &::after {
+      @apply absolute border-b-2 border-l-2 border-brand-beige opacity-0 transform -rotate-45 -skew-y-6;
+
+      top: 4px;
+      left: 3.5px;
+      width: 13px;
+      height: 8px;
+      content: '';
+    }
+    &:hover::after {
+      @apply opacity-25;
+    }
+  }
+  &__gdpr-checkbox:checked + &__gdpr-tick::after {
+    @apply opacity-100;
+  }
+  &__category {
+    @apply grid justify-items-start gap-y-3 auto-rows-min pr-2;
+
+    grid-template-rows: 1.25rem;
+    @screen sm {
+      grid-template-rows: 2.5rem;
+    }
+  }
+  &__copyright-block {
+    @screen sm {
+      grid-template-columns: max-content max-content;
+      grid-template-rows: 1rem 2rem;
+    }
+    @screen lg {
+      grid-auto-columns: max-content max-content auto;
+    }
+  }
+  &__privacy-link {
+    @screen sm {
+      &::after {
+        @apply bg-brand-grey;
+
+        left: -1.125rem;
+      }
+    }
+  }
+  &__confidentiality-link {
+    @screen lg {
+      &::after {
+        @apply bg-brand-grey;
+
+        left: -1.125rem;
+      }
+    }
+  }
+  &__pay {
+    grid-auto-columns: 2.5rem;
+    & > svg {
+      width: 2.5rem;
+      height: 1.625rem;
+      fill: var(--color-grey);
+    }
+  }
+}

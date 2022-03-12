@@ -1,0 +1,19 @@
+<div class="flex justify-between">
+  <h2 class="c-title">Моя корзина</h2>
+  <button class="text-brand-red font-text sm:hidden text-xs uppercase" (click)="removeItems()">
+    Очистить
+  </button>
+</div>
+<div class="grid gap-y-4">
+  <ng-container *ngFor="let item of cartItems; last as isLast">
+    <app-cart-item
+      (removeEvent)="removeItem(item.product)"
+      (changeCountEvent)="changeCountProduct(item.product, $event)"
+      class="relative grid grid-flow-col gap-x-2.5 sm:gap-x-5"
+      [product]="item.product"
+      [factor]="item.count"
+    ></app-cart-item>
+    <hr *ngIf="!isLast" />
+  </ng-container>
+  <p class="c-text" *ngIf="!cartItems?.length">Товаров в корзине нет</p>
+</div>

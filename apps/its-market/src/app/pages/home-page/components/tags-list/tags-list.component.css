@@ -1,0 +1,12 @@
+:host {
+  grid-template-rows: 1rem 1fr 1rem;
+  @screen sm {
+    grid-template-rows: 3rem 1fr 3rem;
+  }
+}
+
+.tags-list {
+  @screen lg {
+    grid-template-columns: 1fr 3fr;
+  }
+}

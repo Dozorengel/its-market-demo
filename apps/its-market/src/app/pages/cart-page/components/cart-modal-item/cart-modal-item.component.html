@@ -1,0 +1,39 @@
+<div class="relative">
+  <!-- Image -->
+  <a [routerLink]="'/product/' + product.slug">
+    <picture>
+      <img src="{{ product.cover }}" alt="#" />
+    </picture>
+  </a>
+  <!-- Pre-order label -->
+  <p
+    class="c-label u-btn-outline-red absolute bottom-0 left-0 right-0 mx-auto"
+    *ngIf="product.preOrderPrice"
+  >
+    Предзаказ
+  </p>
+</div>
+<div class="flex flex-col justify-between">
+  <!-- Title -->
+  <p class="c-text text-sm">
+    <a [routerLink]="'/product/' + product.slug">{{ product.title }}</a>
+  </p>
+  <!-- Price box -->
+  <div class="c-text flex items-center justify-between pt-4 text-sm">
+    <div class="border-brand-beige flex items-center w-20 h-7 border rounded">
+      <button class="w-full h-full" (mousedown)="$event.preventDefault()" (click)="dec()">‒</button>
+      <span class="w-1/2 text-center">{{ factor }}</span>
+      <button
+        class="disabled:pointer-events-none disabled:opacity-50 w-full h-full"
+        [disabled]="!totalPrice || product.isDigital"
+        (mousedown)="$event.preventDefault()"
+        (click)="inc()"
+      >
+        +
+      </button>
+    </div>
+    <span class="font-black">
+      {{ totalPrice | currencyRub }}
+    </span>
+  </div>
+</div>

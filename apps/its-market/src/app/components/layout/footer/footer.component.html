@@ -1,0 +1,140 @@
+<footer
+  class="footer bg-brand-black text-brand-beige grid h-full col-start-2 row-start-2 gap-y-16 lg:gap-y-40"
+>
+  <div class="footer__subscription-block grid gap-y-5 sm:gap-y-8" style="display: none !important">
+    <p class="text-brand-beige row-span-1 sm:text-2xl font-black">
+      Получите скидку 10% за подписку
+    </p>
+    <form class="footer__form grid gap-y-3 sm:gap-y-6">
+      <div class="footer__email bg-brand-dark-black relative grid rounded-md">
+        <svg class="top-1/2 left-3 absolute w-4 h-4 transform -translate-y-1/2">
+          <use xlink:href="/assets/img/sprite.svg#mail"></use>
+        </svg>
+        <input
+          type="email"
+          class="footer__email-input c-text placeholder-brand-beige w-full pl-10 pr-2 bg-transparent"
+          placeholder="Электронная почта"
+          aria-label="Электронная почта"
+        />
+        <button class="c-btn u-btn-fill-red m-0.5">Подписаться</button>
+      </div>
+      <div class="footer__gdpr relative grid">
+        <input
+          type="checkbox"
+          class="footer__gdpr-checkbox opacity-0"
+          id="footer-gdpr"
+          required
+          aria-label="GDPR"
+          aria-required="true"
+        />
+        <label
+          for="footer-gdpr"
+          class="footer__gdpr-tick bg-brand-dark-black absolute w-5 h-5 rounded cursor-pointer"
+        ></label>
+        <span class="c-text">
+          Даю согласие на обработку моих
+          <a
+            routerLink="/privacy"
+            target="_blank"
+            class="u-text-decor-beige-50 hover:text-brand-light-grey underline"
+          >
+            персональных данных
+          </a>
+        </span>
+      </div>
+    </form>
+  </div>
+  <div class="font-text grid grid-cols-3 lg:row-span-1 lg:row-start-1">
+    <nav class="footer__category" aria-label="ITSumma">
+      <h4 class="text-xs sm:text-sm tracking-wider uppercase">ITSumma</h4>
+      <a
+        routerLink="/about"
+        [class.text-brand-white]="router.url === '/about'"
+        class="c-text hover:text-brand-light-grey"
+      >
+        О компании
+      </a>
+      <a
+        routerLink="/team"
+        routerLinkActive="text-brand-white"
+        class="c-text hover:text-brand-light-grey"
+      >
+        Наша команда
+      </a>
+      <a
+        routerLink="/about"
+        fragment="contact-box"
+        [class.text-brand-white]="router.url === '/about#contact-box'"
+        class="c-text hover:text-brand-light-grey"
+      >
+        Контакты
+      </a>
+    </nav>
+    <nav class="footer__category" aria-label="Помощь">
+      <h4 class="text-xs sm:text-sm tracking-wider uppercase">Помощь</h4>
+      <a
+        routerLink="/delivery"
+        routerLinkActive="text-brand-white"
+        class="c-text hover:text-brand-light-grey"
+      >
+        Оплата и доставка
+      </a>
+    </nav>
+    <nav class="footer__category" aria-label="Мы в соцсетях">
+      <h4 class="text-xs sm:text-sm tracking-wider uppercase">Мы в соцсетях</h4>
+      <a
+        href="https://facebook.com/itsumma/"
+        target="_blank"
+        class="c-text hover:text-brand-light-grey"
+      >
+        Facebook
+      </a>
+      <a href="https://vk.com/itsumma" target="_blank" class="c-text hover:text-brand-light-grey">
+        ВКонтакте
+      </a>
+      <a
+        href="https://twitter.com/itsumma"
+        target="_blank"
+        class="c-text hover:text-brand-light-grey"
+      >
+        Twitter
+      </a>
+      <a
+        href="https://youtube.com/c/ItsummaRu"
+        target="_blank"
+        class="c-text hover:text-brand-light-grey"
+      >
+        YouTube
+      </a>
+    </nav>
+  </div>
+  <div
+    class="footer__copyright-block grid lg:items-center justify-items-start lg:grid-flow-col lg:grid-cols-none lg:col-span-2 lg:col-start-1 lg:grid-rows-none gap-y-4 sm:gap-x-8"
+  >
+    <small class="text-xs sm:text-sm font-light">© 2008–{{ year }}, ООО «Сумма АйТи»</small>
+    <p class="footer__privacy-link u-dot-separator text-xs sm:text-sm font-light underline">
+      <a routerLink="/privacy" routerLinkActive="text-brand-white" class="u-text-decor-beige-50">
+        Политика приватности
+      </a>
+    </p>
+    <div
+      class="footer__pay text-brand-light-grey flex lg:justify-self-end sm:row-start-3 lg:row-start-auto gap-x-2"
+    >
+      <svg>
+        <use xlink:href="/assets/img/sprite.svg#visa"></use>
+      </svg>
+      <svg>
+        <use xlink:href="/assets/img/sprite.svg#mastercard"></use>
+      </svg>
+      <svg>
+        <use xlink:href="/assets/img/sprite.svg#mir"></use>
+      </svg>
+      <svg>
+        <use xlink:href="/assets/img/sprite.svg#webmoney"></use>
+      </svg>
+      <svg>
+        <use xlink:href="/assets/img/sprite.svg#yandexmoney"></use>
+      </svg>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,23 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<main class="c-main gap-y-4 sm:gap-y-8 sm:pt-0 pt-4 pb-8">
+  <app-page-header
+    [title]="title"
+    [description]="description"
+    class="c-grid-container bg-brand-light-red relative col-start-2 overflow-hidden"
+  >
+  </app-page-header>
+
+  <div class="bg-brand-light-grey sm:c-grid-container col-start-2 sm:px-0 px-4 py-8 sm:py-20">
+    <div
+      class="catalog-page__grid grid col-start-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-2.5"
+    >
+      <app-product-card
+        class="bg-brand-white grid items-end justify-items-center gap-y-2 pt-6 sm:pt-10 pb-2 sm:pb-5 duration-200"
+        *ngFor="let product of products"
+        [product]="product"
+      ></app-product-card>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

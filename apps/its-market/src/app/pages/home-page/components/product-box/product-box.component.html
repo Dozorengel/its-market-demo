@@ -1,0 +1,67 @@
+<section
+  #container
+  class="product-box relative grid sm:col-span-3 col-start-2 lg:col-span-2 lg:col-start-2 row-start-2 gap-y-2.5 sm:gap-y-8 lg:gap-y-8 items-center gap-x-8"
+  [ngClass]="
+    tag.description && tag.description.length > 70 ? 'product-box_big' : 'product-box_small'
+  "
+>
+  <!-- Title -->
+  <h2
+    class="product-box__title c-title lg:w-auto lg:col-span-1 col-span-2 lg:pt-4 lg:mx-0 sm:mx-auto"
+  >
+    {{ tag.title }}
+  </h2>
+  <!-- Description -->
+  <p
+    class="product-box__description c-text lg:self-start self-end lg:w-auto lg:col-span-1 col-span-2 lg:row-start-2 lg:mx-0 sm:mx-auto text-base sm:text-2xl leading-tight sm:leading-7"
+  >
+    {{ tag.description }}
+  </p>
+  <!-- Timer -->
+  <p
+    class="product-box__timer c-text lg:self-start self-end lg:w-auto lg:col-span-1 col-span-2 lg:row-start-2 lg:mx-0 sm:mx-auto"
+    *ngIf="dueDate"
+    [appTimer]="dueDate"
+    (seconds)="seconds = $event"
+  >
+    Осталось {{ seconds | formatTime }}
+  </p>
+  <!-- Card line -->
+  <div
+    #line
+    class="product-box__line snap snap-x snap-mandatory grid grid-flow-col col-span-2 lg:col-start-2 lg:row-span-3 sm:gap-y-4 gap-x-4 sm:py-5 lg:my-0 my-2 sm:my-4 overflow-x-auto"
+  >
+    <app-product-card
+      #card
+      class="bg-brand-white snap-start grid items-end justify-items-center gap-y-2 pt-6 sm:pt-10 pb-2 sm:pb-5 duration-200"
+      *ngFor="let product of tag.products"
+      [product]="product"
+    ></app-product-card>
+  </div>
+  <!-- Show all -->
+  <div
+    class="product-box__button-box self-center lg:w-auto lg:row-start-3 lg:pb-4 lg:ml-0 sm:ml-auto"
+  >
+    <a [routerLink]="'/catalog/tag/' + tag.slug" class="c-btn-outline u-btn-outline-red">
+      {{ btnText }}
+    </a>
+  </div>
+  <!-- Prev/Next -->
+  <div
+    #arrows
+    class="product-box__arrows-box grid items-center justify-end justify-self-end grid-flow-col gap-x-2 sm:gap-x-5 lg:mr-0 sm:mr-auto"
+  >
+    <button
+      #prevBtn
+      class="product-box__btn-prev c-btn-prev lg:top-1/2 lg:-translate-y-3/4 lg:absolute invisible duration-200 lg:transform opacity-0"
+      [class.product-box__btn-prev_big]="tag.description && tag.description.length > 70"
+      aria-label="Назад"
+    ></button>
+    <!-- <p class="c-text lg:hidden">1/4</p> -->
+    <button
+      #nextBtn
+      class="product-box__btn-next c-btn-next lg:top-1/2 lg:-translate-y-3/4 lg:absolute lg:invisible duration-200 lg:transform lg:opacity-0"
+      aria-label="Вперёд"
+    ></button>
+  </div>
+</section>

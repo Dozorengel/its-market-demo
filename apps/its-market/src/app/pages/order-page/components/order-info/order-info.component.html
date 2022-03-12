@@ -1,0 +1,288 @@
+<form [formGroup]="form" class="grid gap-y-4 sm:gap-y-8">
+  <div
+    *ngIf="!count; else order"
+    class="bg-brand-white grid gap-y-5 sm:gap-y-8 sm:p-10 px-4 py-5"
+  >
+    <h2 class="c-title">Оформление заказа</h2>
+    <p class="c-text">Товаров в корзине нет</p>
+  </div>
+  <ng-template #order>
+    <!-- Ваш телефон -->
+    <div class="bg-brand-white grid gap-y-5 sm:gap-y-8 sm:p-10 px-4 py-5">
+      <h2 *ngIf="!isDigital; else digital_header" class="c-title">Ваш телефон</h2>
+      <ng-template #digital_header>
+        <h2 class="c-title">Контактная информация</h2>
+      </ng-template>
+      <div class="c-text font-text grid gap-y-5">
+        <div class="order-info__phone-box grid">
+          <select
+            #phoneCountrySelect
+            class="order-info__select c-input c-text col-span-1 border-r-0 rounded-r-none appearance-none"
+            formControlName="phoneCountry"
+            (change)="areaCode = phoneCountrySelect.value"
+          >
+            <option class="c-text" *ngFor="let country of countries" [value]="country.code">
+              {{ country.name }}
+            </option>
+          </select>
+          <div
+            class="font-text text-lg border rounded rounded-l-none"
+            [ngClass]="
+              form.controls.phone.invalid && form.controls.phone.touched
+                ? 'border-brand-red'
+                : 'border-brand-beige'
+            "
+          >
+            <span class="c-text pl-3 sm:pl-5">{{ areaCode }}</span>
+            <input
+              type="tel"
+              class="focus:outline-none c-text w-28 sm:w-auto h-full pl-1"
+              placeholder="___ ___-__-__"
+              aria-label="Телефон"
+              appPhoneMask
+              formControlName="phone"
+              autocomplete="tel"
+            />
+          </div>
+          <div class="order-info__error mt-2">
+            <span *ngFor="let error of errors?.orderInfo.children.phone?.constraints">
+              {{ error }}
+            </span>
+          </div>
+        </div>
+
+        <ng-container *ngIf="isDigital">
+          <div class="order-info__list-box">
+            <label for="order-name-digital">Имя и фамилия</label>
+            <input
+              class="c-input c-text col-span-3"
+              aria-label="Имя и фамилия"
+              formControlName="name"
+              autocomplete="name"
+              id="order-name-digital"
+            />
+            <div class="order-info__error">
+              <span *ngFor="let error of errors?.orderInfo.children.name?.constraints">
+                {{ error }}
+              </span>
+            </div>
+          </div>
+          <!-- Эл. почта -->
+          <div class="order-info__list-box">
+            <label for="order-email-digital">Эл. почта</label>
+            <input
+              type="email"
+              class="c-input c-text col-span-3"
+              aria-label="Эл. почта"
+              formControlName="email"
+              autocomplete="email"
+              id="order-email-digital"
+            />
+            <div class="order-info__error">
+              <span *ngFor="let error of errors?.orderInfo.children.email?.constraints">
+                {{ error }}
+              </span>
+            </div>
+          </div>
+          <!-- Персональные данные -->
+          <label for="order-gdpr-digital" class="max-w-max flex lg:items-center">
+            <input
+              type="checkbox"
+              class="order-info__checkbox absolute w-0 h-0 opacity-0"
+              id="order-gdpr-digital"
+              aria-label="GDPR"
+              formControlName="allowPersonalData"
+            />
+            <span
+              class="order-info__checkbox-tick bg-brand-light-beige absolute w-5 h-5 rounded cursor-pointer"
+            ></span>
+            <span class="ml-7 cursor-pointer">
+              Даю согласие на обработку моих
+              <a routerLink="/privacy" target="_blank" class="u-text-decor-beige-50 underline">
+                персональных данных.
+              </a>
+            </span>
+          </label>
+        </ng-container>
+      </div>
+    </div>
+    <!-- Адрес доставки -->
+    <div *ngIf="!isDigital" class="bg-brand-white grid gap-y-5 sm:gap-y-8 sm:p-10 px-4 py-5">
+      <h2 class="c-title">Адрес доставки</h2>
+      <div class="c-text font-text grid gap-y-5">
+        <!-- Страна -->
+        <div class="order-info__list-box">
+          <label for="order-country">Страна</label>
+          <select
+            required
+            class="order-info__select c-input c-text col-span-3 appearance-none"
+            formControlName="country"
+            id="order-country"
+          >
+            <option class="c-text" *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </option>
+          </select>
+        </div>
+        <!-- Город -->
+        <div class="order-info__list-box">
+          <label for="order-city">Город</label>
+          <ngx-dadata
+            *ngIf="form.value['country'] === 'Россия'; else not_russia"
+            class="c-input c-text col-span-3"
+            aria-label="Город"
+            formControlName="city"
+            id="order-city"
+            [config]="config"
+            (selected)="onAddressSelected($event)"
+            autocomplete="off"
+            required
+            (focusout)="markAsTouched()"
+          >
+          </ngx-dadata>
+          <ng-template #not_russia>
+            <input
+              class="c-input c-text col-span-3"
+              aria-label="Город"
+              required
+              formControlName="city"
+              id="order-city"
+            />
+          </ng-template>
+          <div class="order-info__error">
+            <span *ngFor="let error of errors?.orderInfo.children.city?.constraints">
+              {{ error }}
+            </span>
+          </div>
+        </div>
+        <!-- Адрес -->
+        <div class="order-info__list-box">
+          <label for="order-address">Адрес</label>
+          <input
+            class="c-input c-text col-span-3"
+            aria-label="Адрес"
+            formControlName="address"
+            required
+            id="order-address"
+          />
+          <div class="order-info__error">
+            <span *ngFor="let error of errors?.orderInfo.children.address?.constraints">
+              {{ error }}
+            </span>
+          </div>
+        </div>
+        <!-- Почтовый индекс -->
+        <div class="order-info__list-box">
+          <label for="order-postal-code">Почтовый индекс</label>
+          <input
+            class="c-input c-text w-28 col-span-3"
+            aria-label="Почтовый индекс"
+            formControlName="postalCode"
+            minlength="5"
+            maxlength="7"
+            required
+            id="order-postal-code"
+          />
+          <div class="order-info__error">
+            <span *ngFor="let error of errors?.orderInfo.children.postalCode?.constraints">
+              {{ error }}
+            </span>
+          </div>
+        </div>
+        <!-- Имя и фамилия -->
+        <div class="order-info__list-box">
+          <label for="order-name">Имя и фамилия</label>
+          <input
+            class="c-input c-text col-span-3"
+            aria-label="Имя и фамилия"
+            formControlName="name"
+            autocomplete="name"
+            id="order-name"
+          />
+          <div class="order-info__error">
+            <span *ngFor="let error of errors?.orderInfo.children.name?.constraints">
+              {{ error }}
+            </span>
+          </div>
+        </div>
+        <!-- Эл. почта -->
+        <div class="order-info__list-box">
+          <label for="order-email">Эл. почта</label>
+          <input
+            type="email"
+            class="c-input c-text col-span-3"
+            aria-label="Эл. почта"
+            formControlName="email"
+            autocomplete="email"
+            id="order-email"
+          />
+          <div class="order-info__error">
+            <span *ngFor="let error of errors?.orderInfo.children.email?.constraints">
+              {{ error }}
+            </span>
+          </div>
+        </div>
+        <!-- Персональные данные -->
+        <label for="order-gdpr" class="max-w-max flex lg:items-center">
+          <input
+            type="checkbox"
+            class="order-info__checkbox absolute w-0 h-0 opacity-0"
+            id="order-gdpr"
+            aria-label="GDPR"
+            formControlName="allowPersonalData"
+          />
+          <span
+            class="order-info__checkbox-tick bg-brand-light-beige absolute w-5 h-5 rounded cursor-pointer"
+          ></span>
+          <span class="ml-7 cursor-pointer">
+            Даю согласие на обработку моих
+            <a routerLink="/privacy" target="_blank" class="u-text-decor-beige-50 underline">
+              персональных данных.
+            </a>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Способ доставки -->
+    <div *ngIf="!isDigital" class="bg-brand-white grid gap-y-5 sm:gap-y-8 sm:p-10 px-4 py-5">
+      <h2 class="c-title">Способ доставки</h2>
+      <div class="grid gap-y-2.5 sm:gap-y-5">
+        <ng-container *ngFor="let delivery of filteredDeliveries; last as isLast">
+          <label
+            class="c-text order-info__delivery-item grid items-center grid-flow-col lg:gap-y-0 gap-y-1 sm:gap-y-2 lg:gap-x-2 cursor-pointer"
+            for="delivery-{{ delivery.id }}"
+          >
+            <div>
+              <input
+                type="radio"
+                class="order-info__radio w-0 h-0 opacity-0"
+                id="delivery-{{ delivery.id }}"
+                [value]="delivery.id"
+                formControlName="delivery_id"
+                aria-required="true"
+              />
+              <span
+                class="order-info__radio-circle bg-brand-light-beige absolute w-5 h-5 rounded-full cursor-pointer"
+              ></span>
+              <span class="c-text ml-7">
+                <span *ngIf="delivery.type === deliveryTypes.SELF_PICKUP">Самовывоз</span>
+                <span *ngIf="delivery.type === deliveryTypes.POSTAL">Почта</span>
+                <span *ngIf="delivery.type === deliveryTypes.COURIER">Курьер</span>
+              </span>
+            </div>
+            <p class="lg:pl-0 pl-8">{{ delivery.description }}</p>
+            <p class="justify-self-end lg:row-auto row-span-2">
+              {{
+                (delivery.limit > 0 && total >= delivery.limit && delivery.type === 'postal'
+                  ? 0
+                  : delivery.price) / 100 | currencyRub
+              }}
+            </p>
+          </label>
+          <hr *ngIf="!isLast" />
+        </ng-container>
+      </div>
+    </div>
+  </ng-template>
+</form>

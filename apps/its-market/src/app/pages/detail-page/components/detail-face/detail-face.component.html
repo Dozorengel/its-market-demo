@@ -1,0 +1,109 @@
+<section class="grid col-start-2 row-start-2 sm:gap-y-6">
+  <app-breadcrumbs [links]="breadcrumbs"></app-breadcrumbs>
+  <div class="grid lg:grid-flow-col lg:gap-8 gap-16" style="grid-auto-columns: 1fr">
+    <!-- Image -->
+    <picture class="detail-face__photo-box u-shadow-big place-self-center">
+      <img [src]="product.cover" alt="#" />
+    </picture>
+    <div class="grid gap-5">
+      <!-- Labels -->
+      <div class="flex flex-wrap gap-y-1 sm:gap-y-2 gap-x-1 sm:gap-x-3">
+        <p class="c-label u-btn-outline-red" *ngIf="product.isNew">Новинка</p>
+        <p class="c-label" *ngIf="product.isBestSeller">Бестселлер</p>
+        <p class="c-label u-btn-outline-red" *ngIf="product.preOrderPrice">Предзаказ</p>
+        <p class="bg-green-500 text-white c-label" *ngIf="product.isDigital">Электронная</p>
+      </div>
+      <!-- Info -->
+      <div class="row-start-2">
+        <h2 class="c-title mb-5">{{ product.title }}</h2>
+        <p class="c-text mb-5 sm:mb-10">{{ product.author.name }}</p>
+        <!-- Price -->
+        <ng-container *ngIf="product.preOrderPrice; else currentPrice">
+          <span class="sm:text-2xl font-black">
+            {{ product.preOrderPrice / 100 | currencyRub }}
+          </span>
+          <span class="u-strikethrough sm:text-2xl font-black">
+            {{ product.price / 100 | currencyRub }}
+          </span>
+        </ng-container>
+        <ng-template #currentPrice>
+          <span class="sm:text-2xl font-black">{{
+            product.price > 0 ? (product.price / 100 | currencyRub) : 'Бесплатно'
+          }}</span>
+        </ng-template>
+        <!-- Buy block -->
+        <ng-container *ngIf="isInCart; else addToCartRef">
+          <a routerLink="/cart" class="c-btn u-btn-fill-beige flex items-center gap-2 mt-5">
+            <svg class="w-5 h-5">
+              <use xlink:href="/assets/img/sprite.svg#cart-empty"></use>
+            </svg>
+            <span class="c-heading">В корзине</span>
+          </a>
+        </ng-container>
+        <ng-template #addToCartRef>
+          <button (click)="addToCart()" class="c-btn u-btn-fill-red flex items-center gap-2 mt-5">
+            <svg class="w-5 h-5">
+              <use xlink:href="/assets/img/sprite.svg#cart-empty"></use>
+            </svg>
+            <span class="c-heading">Добавить в корзину</span>
+          </button>
+        </ng-template>
+        <p class="c-heading mt-5 sm:mt-10 mb-4 sm:text-lg">О товаре</p>
+        <p class="c-text mb-4 leading-normal">
+          {{ product.about }}
+        </p>
+        <!-- Desktop preview -->
+        <button
+          *ngIf="previewLink"
+          class="hover:text-brand-white c-tag-small lg:flex gap-1.5 items-center hidden"
+          (click)="showPreview()"
+        >
+          <svg class="w-2 h-2">
+            <use xlink:href="/assets/img/sprite.svg#contents"></use>
+          </svg>
+          <span class="c-heading">Оглавление и содержание</span>
+        </button>
+        <!-- Mobile preview -->
+        <a
+          href="https://www.itsumma.ru/Kubernetes_ITSummaPress.pdf"
+          target="_blank"
+          class="c-tag-small hover:bg-brand-white hover:text-current gap-1.5 flex items-center lg:hidden"
+        >
+          <svg class="w-2 h-2">
+            <use xlink:href="/assets/img/sprite.svg#contents"></use>
+          </svg>
+          <span class="c-heading">Оглавление и содержание</span>
+        </a>
+        <p class="c-heading mt-5 sm:mt-10 mb-4 sm:text-lg">Поделиться</p>
+        <nav aria-label="Поделиться" class="flex gap-4">
+          <button shareButton="vk">
+            <svg class="w-12 h-12">
+              <use xlink:href="/assets/img/sprite.svg#vk-circle"></use>
+            </svg>
+          </button>
+          <button shareButton="facebook">
+            <svg class="w-12 h-12">
+              <use xlink:href="/assets/img/sprite.svg#facebook-circle"></use>
+            </svg>
+          </button>
+          <button shareButton="twitter">
+            <svg class="w-12 h-12">
+              <use xlink:href="/assets/img/sprite.svg#twitter-circle"></use>
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<div
+  class="detail-face__preview fixed top-0 z-30 hidden w-full h-full p-12 duration-200"
+  (click)="hidePreview()"
+>
+  <button class="absolute top-0 right-0">
+    <svg class="text-brand-white w-12 h-12 p-3">
+      <use xlink:href="/assets/img/sprite.svg#cross"></use>
+    </svg>
+  </button>
+  <embed *ngIf="previewLink" [src]="previewLink" frameborder="0" width="100%" height="100%" />
+</div>

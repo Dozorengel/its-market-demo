@@ -1,0 +1,13 @@
+:host {
+  grid-template-rows: 1.5rem minmax(0, 1fr);
+  @screen sm {
+    grid-template-rows: 3rem 19rem 3rem;
+  }
+}
+
+.page-header {
+  grid-template-rows: 3rem auto minmax(0, 1fr);
+  @screen sm {
+    grid-template-rows: auto 1fr 1fr;
+  }
+}
